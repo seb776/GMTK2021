@@ -390,7 +390,7 @@ MonoBehaviour:
   MinVerticalScale: 0.95
   IdleVerticalStretchSpeed: 1.5
   RunVerticalStretchSpeed: 20
-  StretchAnimTimeOffset: 0
+  StretchAnimTimeOffset: 2
   FootSpeed: 10
   FootFrames:
   - {fileID: 7495015775077052599}
@@ -1419,7 +1419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8478601094608221405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.1, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 528659522965933938}
