@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &541485787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541485788}
+  m_Layer: 0
+  m_Name: ObjectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &541485788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541485787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4019007166943448590}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510435919986966039
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +40,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4019007166943448590}
   - component: {fileID: 6382701918495190320}
+  - component: {fileID: 256106813}
+  - component: {fileID: 256106811}
+  - component: {fileID: 256106810}
   m_Layer: 0
   m_Name: SmartAnt
   m_TagString: Untagged
@@ -30,6 +63,7 @@ Transform:
   m_Children:
   - {fileID: 1049323333865463157}
   - {fileID: 6382701917551883433}
+  - {fileID: 541485788}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54,10 +88,53 @@ MonoBehaviour:
   - {fileID: 6382701916725861737}
   - {fileID: 6382701917150602537}
   AntBody: {fileID: 2297702208049079838}
-  LeftButton: 0
+  LeftButton: 1
   RightButton: 0
   RunButton: 0
   IdleButton: 0
+--- !u!135 &256106813
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510435919986966039}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: -0.5, y: 0, z: 0}
+--- !u!114 &256106811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510435919986966039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc62346dca21c9e44ac4f34fd65bc7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 0}
+  speed: 20
+  active: 1
+  lookForward: 0
+  mode: 2
+--- !u!114 &256106810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510435919986966039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01aa8162921e86744bdf80e9c1d6d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectHolder: {fileID: 541485788}
 --- !u!1 &2297702208049079838
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,10 +469,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6c337f38278e0488aabf9f442598b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Angle: 5
   AngleOffset: 0
   TimeOffset: 0
   AxisRotation: {x: 0, y: 0, z: 1}
+  IsGrassAnim: 0
+  GrassRenderer: {fileID: 0}
 --- !u!1 &4747524440979123970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6c337f38278e0488aabf9f442598b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Angle: 5
   AngleOffset: 0
   TimeOffset: 0
   AxisRotation: {x: 0, y: 0, z: 1}
+  IsGrassAnim: 0
+  GrassRenderer: {fileID: 0}

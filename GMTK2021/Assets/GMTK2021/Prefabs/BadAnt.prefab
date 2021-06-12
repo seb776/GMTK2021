@@ -44,10 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6c337f38278e0488aabf9f442598b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Angle: 5
   AngleOffset: 0
   TimeOffset: 0
   AxisRotation: {x: 0, y: 0, z: 1}
+  IsGrassAnim: 0
+  GrassRenderer: {fileID: 0}
 --- !u!1 &798436495
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,10 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6c337f38278e0488aabf9f442598b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Angle: 5
   AngleOffset: 0
   TimeOffset: 1
   AxisRotation: {x: 0, y: 0, z: 1}
+  IsGrassAnim: 0
+  GrassRenderer: {fileID: 0}
 --- !u!1 &949955105
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +550,36 @@ Transform:
   - {fileID: 1094551461}
   m_Father: {fileID: 1061699537}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1732769886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732769887}
+  m_Layer: 0
+  m_Name: ObjectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1732769887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732769886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8022468026908008264}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738460030
 GameObject:
@@ -1101,6 +1137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8022468026908008264}
   - component: {fileID: 229784694}
+  - component: {fileID: 1387240135}
+  - component: {fileID: 6804099228225919542}
+  - component: {fileID: 1387240136}
   m_Layer: 0
   m_Name: BadAnt
   m_TagString: Untagged
@@ -1121,6 +1160,7 @@ Transform:
   m_Children:
   - {fileID: 6204864695576972339}
   - {fileID: 1414292975}
+  - {fileID: 1732769887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1145,7 +1185,50 @@ MonoBehaviour:
   - {fileID: 1728597039}
   - {fileID: 2086237295}
   AntBody: {fileID: 5147889732571330392}
-  LeftButton: 0
+  LeftButton: 1
   RightButton: 0
   RunButton: 0
   IdleButton: 0
+--- !u!135 &1387240135
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505031401579097937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: -0.5, y: 0, z: 0}
+--- !u!114 &6804099228225919542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505031401579097937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc62346dca21c9e44ac4f34fd65bc7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 0}
+  speed: 3
+  active: 1
+  lookForward: 0
+  mode: 2
+--- !u!114 &1387240136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505031401579097937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01aa8162921e86744bdf80e9c1d6d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectHolder: {fileID: 1732769887}
