@@ -20,6 +20,7 @@ public class AntAnimation : MonoBehaviour
 
     [Header("Foot values")]
     public float RunVerticalStretchSpeed;
+    public float StretchAnimTimeOffset;
     public float FootSpeed;
     public List<GameObject> FootFrames;
 
@@ -82,7 +83,7 @@ public class AntAnimation : MonoBehaviour
         else if (_antAnimation == EAntAnimation.RUN)
             stretchSpeed = RunVerticalStretchSpeed;
 
-        var coef = Mathf.Sin(Time.realtimeSinceStartup * stretchSpeed) * 0.5f + 0.5f;
+        var coef = Mathf.Sin(Time.realtimeSinceStartup * stretchSpeed+ StretchAnimTimeOffset) * 0.5f + 0.5f;
         this.transform.localScale = new Vector3(Mathf.Lerp(_orginialPrefabScale, _orginialPrefabScale*MinVerticalScale, coef), curScale.y, curScale.z);
 
         if (_antAnimation == EAntAnimation.RUN)
