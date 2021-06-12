@@ -22,7 +22,7 @@ public class SplineWalker : MonoBehaviour
 
     private void Update()
     {
-        if (active)
+        if (active && spline != null)
         {
             elapsedTime += Time.deltaTime;
             Vector3 position;

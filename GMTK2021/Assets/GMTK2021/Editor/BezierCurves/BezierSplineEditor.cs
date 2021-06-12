@@ -29,14 +29,12 @@ public class BezierSplineInspector : Editor
             spline.Loop = loop;
         }
 
+        GUILayout.Label($"Total Spline Length: {spline.TotalLength}");
+        GUILayout.Label($"Total Control Points: {spline.ControlPointCount}");
+
         if (selectedIndex >= 0 && selectedIndex < spline.ControlPointCount)
         {
             DrawSelectedPointInspector();
-
-            GUILayout.Label($"Total spline length: {spline.TotalLength}");
-            //EditorGUILayout.TextField($"{spline.Find_t_FromDistance_Lookup(selectedIndex)}");
-            EditorGUILayout.Space();
-            EditorGUILayout.TextField($"{spline.GetSplineLength(1000, (float)selectedIndex / (spline.ControlPointCount - 1))}");
         }
 
         if (GUILayout.Button("Add Curve"))
@@ -50,9 +48,9 @@ public class BezierSplineInspector : Editor
     private void OnSceneGUI()
     {
         spline = target as BezierSpline;
+
         handleTransform = spline.transform;
-        handleRotation = Tools.pivotRotation == PivotRotation.Local ?
-            handleTransform.rotation : Quaternion.identity;
+        handleRotation = Tools.pivotRotation == PivotRotation.Local ? handleTransform.rotation : Quaternion.identity;
 
         Vector3 p0 = ShowPoint(0);
         for (int i = 1; i < spline.ControlPointCount; i += 3)
@@ -113,8 +111,8 @@ public class BezierSplineInspector : Editor
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(spline, "Move Point");
-                EditorUtility.SetDirty(spline);
                 spline.SetControlPoint(index, handleTransform.InverseTransformPoint(point));
+                EditorUtility.SetDirty(spline);
             }
         }
 
@@ -123,14 +121,14 @@ public class BezierSplineInspector : Editor
 
     private void DrawSelectedPointInspector()
     {
-        GUILayout.Label($"Selected Point ({selectedIndex})");
+        GUILayout.Label($"Current Selection: Point {selectedIndex}");
         EditorGUI.BeginChangeCheck();
         Vector3 point = EditorGUILayout.Vector3Field("Position", spline.GetControlPoint(selectedIndex));
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(spline, "Move Point");
-            EditorUtility.SetDirty(spline);
             spline.SetControlPoint(selectedIndex, point);
+            EditorUtility.SetDirty(spline);
         }
 
         EditorGUI.BeginChangeCheck();
@@ -141,6 +139,16 @@ public class BezierSplineInspector : Editor
             Undo.RecordObject(spline, "Change Point Mode");
             spline.SetControlPointMode(selectedIndex, mode);
             EditorUtility.SetDirty(spline);
+        }
+
+        if(selectedIndex > 3)
+        {
+            if (GUILayout.Button("Delete Selected Point"))
+            {
+                Undo.RecordObject(spline, "Delete Selected Point");
+                spline.DeleteSelectedPoint(selectedIndex);
+                EditorUtility.SetDirty(spline);
+            }
         }
     }
 }

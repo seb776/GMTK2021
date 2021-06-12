@@ -24,6 +24,7 @@ public class SineRotationAnimation : MonoBehaviour
         //    float b = Random.Range(_minInclusive, 1.0f);
         //    GrassRenderer.material.color = new Color(r, g, b, 1.0f);
         //}
+        
     }
 
 

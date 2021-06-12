@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PREFAB_PAINTER_TAG
   layers:
   - Default
   - TransparentFX
