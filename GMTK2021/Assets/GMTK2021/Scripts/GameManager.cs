@@ -36,4 +36,9 @@ public class GameManager : MonoBehaviour
         }
         actualElapsed -= Time.deltaTime;
     }
+
+    public void ClickSpawn(int type)
+    {
+        Debug.Log("Spawn " + type);
+    }
 }
