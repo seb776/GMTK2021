@@ -58,6 +58,7 @@
 				float index = floor(x / rep);
 				uv.y += sin(index)*0.25-.95;
 				uv.x = fmod(x, rep) - rep * 0.5;
+				uv.x += .1*sin(_Time*25.+uv.y*5.)*.3;
 				//uv.y = clamp(uv.y, -1.0, 1.0);
 				float shadow = 1. - tex2D(_ShadowTex, mul(uv, r2d(index)) - float2(-0.5, -0.5)).x;
 				totShadow += shadow;
