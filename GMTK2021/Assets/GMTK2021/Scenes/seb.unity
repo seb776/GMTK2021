@@ -631,6 +631,67 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &4796194315409687639
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.685
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528659522965933938, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622900140506808171, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_Name
+      value: GoodAnt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495015775422952916, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47b8103fbe96f584ba2e5620168003f7, type: 3}
 --- !u!1001 &6397192207334885663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -638,6 +699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1414292974, guid: e0c2075290f9a654a9bfb1bcee4c4475, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5505031401579097937, guid: e0c2075290f9a654a9bfb1bcee4c4475, type: 3}
       propertyPath: m_Name
       value: BadAnt
