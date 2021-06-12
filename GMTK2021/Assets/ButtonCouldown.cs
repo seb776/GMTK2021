@@ -50,7 +50,6 @@ public class ButtonCouldown : MonoBehaviour
         } 
         if (growth)
         {
-            Debug.Log(goal);
             timeGrowing += Time.deltaTime;
             BackgroundImage.transform.localScale = Vector3.Lerp(start, goal, timeGrowing / GrowthTime);
 
@@ -64,7 +63,6 @@ public class ButtonCouldown : MonoBehaviour
 
     public void MouseEnter()
     {
-        Debug.Log("Enter");
         timeGrowing = 0f;
         start = BackgroundImage.transform.localScale;
         goal = MaxGrowth;
@@ -73,20 +71,20 @@ public class ButtonCouldown : MonoBehaviour
 
     public void MouseExit()
     {
-        Debug.Log("Exit");
         timeGrowing = 0f;
         start = BackgroundImage.transform.localScale;
         goal = Vector3.one;
         growth = true;
     }
 
-    public void MouseClick()
+    public void MouseClickLaunch(int type)
     {
         if (!waitCouldown)
         {
             timeCouldown = 0;
             waitCouldown = true;
             Debug.Log("Click");
+            AppSingleton.Instance.SpawnerAllies.CreateAnt((AntFarm.EAntType)type);
         }
     }
 }

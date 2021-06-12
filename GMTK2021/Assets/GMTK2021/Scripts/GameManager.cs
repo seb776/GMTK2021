@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Time of a game in seconds")]
     public float GameDuration;
     public List<TMP_Text> Timer;
+    public AntFarm Spawner;
 
     private float actualElapsed;
     // Start is called before the first frame update
@@ -35,10 +36,5 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game finished");
         }
         actualElapsed -= Time.deltaTime;
-    }
-
-    public void ClickSpawn(int type)
-    {
-        Debug.Log("Spawn " + type);
     }
 }

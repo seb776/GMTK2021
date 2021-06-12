@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AppSingleton : Singleton<AppSingleton>
 {
+    public AntFarm SpawnerAllies;
     // Start is called before the first frame update
     void Start()
     {
