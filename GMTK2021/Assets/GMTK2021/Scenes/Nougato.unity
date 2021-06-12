@@ -272,8 +272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3d5e7721ca110498d0121bf689aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BorderScrollThreshold: 0.5
-  Speed: 0.1
+  BorderScrollThreshold: 0.6
+  Speed: 15
+  ExponentialSpeedPower: 7
 --- !u!1 &987873224
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,11 @@ using VectorSwizzle;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float BorderScrollThreshold;
-    public float Speed;
+    public float BorderScrollThreshold = 0.6f;
+    public float Speed = 12;
+    [Tooltip("Must be odd number !")]
+    public float ExponentialSpeedPower = 7;
+    public float IgnoreValueUpperThan = 1.1f;
 
     // Update is called once per frame
     void Update()
@@ -18,10 +21,9 @@ public class CameraMovement : MonoBehaviour
 
         var deltaMousePos = Mathf.Abs(centeredMousePos.x) - BorderScrollThreshold;
 
-        if (deltaMousePos > 0.0f)
+        if (deltaMousePos > 0.0f && Mathf.Abs(centeredMousePos.x) <= 1.15f)
         {
-            Camera.main.transform.position += Vector3.forward * Mathf.Sign(centeredMousePos.x) * Speed * Time.deltaTime;
+            Camera.main.transform.position += Vector3.forward * Mathf.Pow(centeredMousePos.x, ExponentialSpeedPower) * Speed * Time.deltaTime;
         }
-
     }
 }
