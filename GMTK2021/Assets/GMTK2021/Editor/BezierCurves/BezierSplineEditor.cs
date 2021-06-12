@@ -32,7 +32,13 @@ public class BezierSplineInspector : Editor
         if (selectedIndex >= 0 && selectedIndex < spline.ControlPointCount)
         {
             DrawSelectedPointInspector();
+
+            GUILayout.Label($"Total spline length: {spline.TotalLength}");
+            //EditorGUILayout.TextField($"{spline.Find_t_FromDistance_Lookup(selectedIndex)}");
+            EditorGUILayout.Space();
+            EditorGUILayout.TextField($"{spline.GetSplineLength(1000, (float)selectedIndex / (spline.ControlPointCount - 1))}");
         }
+
         if (GUILayout.Button("Add Curve"))
         {
             Undo.RecordObject(spline, "Add Curve");
@@ -117,7 +123,7 @@ public class BezierSplineInspector : Editor
 
     private void DrawSelectedPointInspector()
     {
-        GUILayout.Label("Selected Point");
+        GUILayout.Label($"Selected Point ({selectedIndex})");
         EditorGUI.BeginChangeCheck();
         Vector3 point = EditorGUILayout.Vector3Field("Position", spline.GetControlPoint(selectedIndex));
         if (EditorGUI.EndChangeCheck())
@@ -129,7 +135,7 @@ public class BezierSplineInspector : Editor
 
         EditorGUI.BeginChangeCheck();
         BezierControlPointMode mode = (BezierControlPointMode)
-            EditorGUILayout.EnumPopup("Mode", spline.GetControlPointMode(selectedIndex));
+        EditorGUILayout.EnumPopup("Mode", spline.GetControlPointMode(selectedIndex));
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(spline, "Change Point Mode");
