@@ -10,6 +10,7 @@ public enum EAntAnimation
 
 public class AntAnimation : MonoBehaviour
 {
+    private float _orginialPrefabScale;
     public EAntAnimation _antAnimation { get; private set; }
 
     public float MinVerticalScale;
@@ -57,6 +58,7 @@ public class AntAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _orginialPrefabScale = this.transform.localScale.x;
         Idle();
                 
     }
@@ -81,7 +83,7 @@ public class AntAnimation : MonoBehaviour
             stretchSpeed = RunVerticalStretchSpeed;
 
         var coef = Mathf.Sin(Time.realtimeSinceStartup * stretchSpeed) * 0.5f + 0.5f;
-        this.transform.localScale = new Vector3(Mathf.Lerp(1.0f, MinVerticalScale, coef), curScale.y, curScale.z);
+        this.transform.localScale = new Vector3(Mathf.Lerp(_orginialPrefabScale, _orginialPrefabScale*MinVerticalScale, coef), curScale.y, curScale.z);
 
         if (_antAnimation == EAntAnimation.RUN)
         {
