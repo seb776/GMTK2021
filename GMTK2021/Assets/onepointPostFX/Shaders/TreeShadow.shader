@@ -47,41 +47,47 @@
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
-
+#define mod(x, y) (x - y * floor(x / y))
 			float drawShadow(float2 uv)
 			{
 				float totShadow = 0.0f;
 
-				uv -= float2(0.5, 0.5);
-				float2 rep = float2(5., 5.);
-				float2 index = floor((uv + rep * .5) / rep);
-				uv = fmod(uv + rep * 0.5, rep) - rep * 0.5;
-				//uv = mul(uv, r2d(index.x));
-
+				float rep = 1.;// float2(5., 5.);
+				float off = 10.;
+				float x = abs(uv.x) + rep * 0.5;
+				float index = floor(x / rep);
+				uv.y += sin(index)*0.25-.95;
+				uv.x = fmod(x, rep) - rep * 0.5;
+				//uv.y = clamp(uv.y, -1.0, 1.0);
+				float shadow = 1. - tex2D(_ShadowTex, mul(uv, r2d(index)) - float2(-0.5, -0.5)).x;
+				totShadow += shadow;
+				/*
 				int cnt = 5;
 				float fcnt = float(cnt);
 				for (int i = 0; i < cnt; ++i)
 				{
 					float f = ((float(i) / fcnt)-0.5f)*2.0f; // -1 to 1
-					float sepDist = 2.0f;
-					float2 nuv = uv + float2(sepDist*f, 0.0f);// +float2(0.5, 0.5);
+					float sepDist = 1.0f;
+					float2 nuv = uv;
+					nuv = uv + float2(sepDist*f, 0.0f);// +float2(0.5, 0.5);
 					nuv = mul(r2d(f*3.), nuv*.5);
 					float shadow = 1.-tex2D(_ShadowTex, nuv).x;
 					totShadow += shadow/fcnt;
 				}
+				*/
 				return saturate(totShadow);
 			}
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float3 prevCol = tex2D(_MainTex, i.uv).xyz;
+                float3 prevCol = tex2D(_MainTex, i.uv).xyz;   
 
                 fixed2 hlf2 = fixed2(0.5,0.5);
-				fixed2 ouv = (i.uv*4. + _CameraPos.zx*.4)*_MainTex_TexelSize.zw / _MainTex_TexelSize.zz;
+				//fixed2 ouv = .5*(i.uv*4. + *.25+float2(0.,-.5))*_MainTex_TexelSize.zw / _MainTex_TexelSize.zz;
 
-				float shadow = drawShadow(ouv);
+				float shadow = drawShadow(1.5*(i.uv*_MainTex_TexelSize.zw / _MainTex_TexelSize.zz) + float2(_CameraPos.z, 0.) *.08);
 
-                float3 col = lerp(prevCol, prevCol * _Intensity, pow(shadow, .5));
+                float3 col = lerp(prevCol, prevCol * _Intensity, pow(shadow, .8));
 
                 return fixed4(col, 1.0);
             }

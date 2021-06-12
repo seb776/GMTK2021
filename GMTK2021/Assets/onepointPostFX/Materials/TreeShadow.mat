@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Bias: 0.237
-    - _Intensity: 0
+    - _Intensity: 0.627
     - _MaxDist: 0.078
     - _Radius: 0.5
     - _Sample: 20
