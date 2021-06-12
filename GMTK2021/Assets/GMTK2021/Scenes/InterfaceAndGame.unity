@@ -456,6 +456,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+--- !u!114 &156636263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6492781248643259241, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &156636264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6492781249675828050, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &217776895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6492781249288090430, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
@@ -478,6 +500,7 @@ GameObject:
   - component: {fileID: 227309205}
   - component: {fileID: 227309204}
   - component: {fileID: 227309206}
+  - component: {fileID: 227309207}
   m_Layer: 0
   m_Name: MainGameObject
   m_TagString: Untagged
@@ -528,6 +551,22 @@ MonoBehaviour:
   Speed: 10
   ExponentialSpeedPower: 7
   IgnoreValueUpperThan: 1.1
+--- !u!114 &227309207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227309203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11dcd4e7958e9a4e8119398cfb5f534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameDuration: 300
+  Timer:
+  - {fileID: 156636264}
+  - {fileID: 156636263}
 --- !u!114 &701133051 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6492781248750340421, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
