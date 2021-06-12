@@ -38,6 +38,13 @@ public class AntAnimation : MonoBehaviour
         AntBody.transform.localScale = new Vector3(-Mathf.Abs(curScale.x), curScale.y, curScale.z);
     }
 
+    public void ToggleDirection()
+    {
+        var curScale = AntBody.transform.localScale;
+        curScale.x *= -1;
+        AntBody.transform.localScale = curScale;
+    }
+
     public bool LeftButton;
     public bool RightButton;
     public bool RunButton;

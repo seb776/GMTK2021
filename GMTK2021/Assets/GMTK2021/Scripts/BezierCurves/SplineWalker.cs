@@ -45,10 +45,17 @@ public class SplineWalker : MonoBehaviour
                             break;
                         case SplineWalkerMode.PingPong:
                             goingForward = false;
-
-                            var localScale = transform.localScale;
-                            localScale.x *= -1;
-                            transform.localScale = localScale;
+                            var antAnimation = GetComponent<AntAnimation>();
+                            if (antAnimation != null)
+                            {
+                                antAnimation.ToggleDirection();
+                            }
+                            else
+                            {
+                                var localScale = transform.localScale;
+                                localScale.x *= -1;
+                                transform.localScale = localScale;
+                            }
                             break;
                     }
                 }
@@ -64,9 +71,17 @@ public class SplineWalker : MonoBehaviour
                     elapsedTime = 0f;
                     goingForward = true;
 
-                    var localScale = transform.localScale;
-                    localScale.x *= -1;
-                    transform.localScale = localScale;
+                    var antAnimation = GetComponent<AntAnimation>();
+                    if (antAnimation != null)
+                    {
+                        antAnimation.ToggleDirection();
+                    }
+                    else
+                    {
+                        var localScale = transform.localScale;
+                        localScale.x *= -1;
+                        transform.localScale = localScale;
+                    }
                 }
             }
 
