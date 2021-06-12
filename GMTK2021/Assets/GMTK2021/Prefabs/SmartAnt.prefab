@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510435919986966039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.79, y: 0.041, z: -0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1049323333865463157}
@@ -82,6 +82,7 @@ MonoBehaviour:
   MinVerticalScale: 0.95
   IdleVerticalStretchSpeed: 1.5
   RunVerticalStretchSpeed: 20
+  StretchAnimTimeOffset: 0
   FootSpeed: 10
   FootFrames:
   - {fileID: 6382701917126029771}
@@ -118,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 0}
-  speed: 20
+  speed: 5
   active: 1
   lookForward: 0
   mode: 2
