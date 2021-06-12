@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2846214, g: 0.37120992, b: 0.498806, a: 1}
+  m_IndirectSpecularColor: {r: 0.28462112, g: 0.37120938, b: 0.49880487, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -454,6 +454,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6492781248502780484, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781248775580593, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: Larve
+      value: 
+      objectReference: {fileID: 1649194547}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
 --- !u!114 &156636263 stripped
@@ -567,6 +575,11 @@ MonoBehaviour:
   Timer:
   - {fileID: 156636264}
   - {fileID: 156636263}
+--- !u!1 &240351076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492781249353120803, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &701133051 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6492781248750340421, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
@@ -859,6 +872,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6492781249303608031, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
   m_PrefabInstance: {fileID: 156636262}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1292111507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492781248483061563, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1538724867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6492781248718319056, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
@@ -952,6 +970,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dee9831502d12d74fb88e461d7670e48, type: 3}
+--- !u!1 &1649194547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492781248502780483, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundImage: {fileID: 1538724867}
+  Larve: {fileID: 1292111507}
   GrowthTime: 0.1
   MaxGrowth: {x: 1.2, y: 1.2, z: 1.2}
   CouldownTime: 10
@@ -1319,6 +1343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundImage: {fileID: 1111946690}
+  Larve: {fileID: 240351076}
   GrowthTime: 0.1
   MaxGrowth: {x: 1.2, y: 1.2, z: 1.2}
   CouldownTime: 15

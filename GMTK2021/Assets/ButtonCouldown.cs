@@ -6,6 +6,7 @@ using UnityEngine;
 public class ButtonCouldown : MonoBehaviour
 {
     public GameObject BackgroundImage;
+    public GameObject Larve;
     public float GrowthTime;
     public Vector3 MaxGrowth;
 
@@ -47,18 +48,24 @@ public class ButtonCouldown : MonoBehaviour
                 waitCouldown = false;
                 ChangeText(CouldownTime.ToString());
             }
-        } 
-        if (growth)
+
+            var localScale = Larve.transform.localScale;
+            localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timeCouldown / CouldownTime);
+            Larve.transform.localScale = localScale;
+        }
+        else
         {
-            timeGrowing += Time.deltaTime;
-            BackgroundImage.transform.localScale = Vector3.Lerp(start, goal, timeGrowing / GrowthTime);
-
-            if (timeGrowing > GrowthTime)
+            if (growth)
             {
-                growth = false;
-            }
-        } 
+                timeGrowing += Time.deltaTime;
+                BackgroundImage.transform.localScale = Vector3.Lerp(start, goal, timeGrowing / GrowthTime);
 
+                if (timeGrowing > GrowthTime)
+                {
+                    growth = false;
+                }
+            }
+        }
     }
 
     public void MouseEnter()
