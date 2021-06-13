@@ -78,7 +78,7 @@ public class Ant : MonoBehaviour
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        //Debug.Log(splineWalker.speed);
+                        Debug.Log(splineWalker.speed);
                     }
                     splineWalker.Reverse();
                 }
@@ -111,6 +111,11 @@ public class Ant : MonoBehaviour
             for (int childIndex = 0; childIndex < holder.childCount; childIndex++)
             {
                 var item = holder.GetChild(childIndex);
+
+                var consomable = item.gameObject.GetComponentInChildren<Consumable>();
+                if (consomable.ScorePoints > 0)
+                    AppSingleton.Instance.Score += consomable.ScorePoints;
+
                 item.transform.parent = go.transform;
 
                 var fadeOut = item.gameObject.transform.GetChild(0).GetComponent<FadeOut>();
@@ -162,11 +167,10 @@ public class Ant : MonoBehaviour
                 var splineWalker = GetComponent<SplineWalker>();
                 if (splineWalker != null)
                 {
-                    var consumable = objectHolder.gameObject.GetComponent<Consumable>();
+                    var consumable = objectHolder.gameObject.GetComponentInChildren<Consumable>();
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        //Debug.Log(splineWalker.speed);
                     }
                 }
             }

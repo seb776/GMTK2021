@@ -68,8 +68,6 @@ public class SplineWalker : MonoBehaviour
                                 elapsedTime = (1f - actualProgress) * splineLength;
                             else
                                 elapsedTime = 0f;
-
-                            Debug.Log(elapsedTime);
                             goingForward = false;
                             var antAnimation = GetComponent<AntAnimation>();
                             if (antAnimation != null)
@@ -94,9 +92,9 @@ public class SplineWalker : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime * speed;
                 progress = Mathf.Clamp01(elapsedTime / splineLength);
-
-                if (progress >= target)
+                if (progress >= 1f)
                 {
+                    Debug.Log(progress);
                     //progress = 0f;
                     elapsedTime = 0f;
                     target = stopAt;

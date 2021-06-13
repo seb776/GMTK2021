@@ -6,6 +6,8 @@ public class Consumable : MonoBehaviour
 {
     public float maxSpeed;
     public int maxCapacity;
+    public int ScorePoints;
+    public int TimeBonus;
 
     // Start is called before the first frame update
     void Start()
