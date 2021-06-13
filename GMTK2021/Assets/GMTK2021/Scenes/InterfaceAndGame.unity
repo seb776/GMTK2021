@@ -350,6 +350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767771440, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -926.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833297649, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 927
+      objectReference: {fileID: 0}
     - target: {fileID: 6492781247900398101, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: m_Name
       value: GUI
@@ -496,6 +504,10 @@ MonoBehaviour:
   SpawnerAllies: {fileID: 987873229}
   TimerSpawn: 0
   spawnUnavailable: 0
+  cursorTexture: {fileID: 0}
+  cursorAttackTexture: {fileID: 0}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
 --- !u!4 &227309205
 Transform:
   m_ObjectHideFlags: 0
