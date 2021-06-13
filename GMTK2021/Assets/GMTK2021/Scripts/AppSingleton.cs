@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AppSingleton : Singleton<AppSingleton>
 {
@@ -25,6 +26,7 @@ public class AppSingleton : Singleton<AppSingleton>
         spawnUnavailable = false;
         TimerSpawn = 0f;
         Score = 0f;
+        PlayerPrefs.SetFloat("Score", 0);
         TimeRemain = 0f;
         ResetCursor();
     }
@@ -50,7 +52,7 @@ public class AppSingleton : Singleton<AppSingleton>
 
     public void GameEnded()
     {
-        Debug.Log("Game finished ! :D");
+        SceneManager.LoadScene("GMTK2021/Scenes/EndGame");
     }
 
     public bool ScoutAlive()
