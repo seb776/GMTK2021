@@ -59,6 +59,7 @@ public class ButtonCouldown : MonoBehaviour
             {
                 timeGrowing += Time.deltaTime;
                 BackgroundImage.transform.localScale = Vector3.Lerp(start, goal, timeGrowing / GrowthTime);
+                Larve.transform.localScale = Vector3.Lerp(start, goal, timeGrowing / GrowthTime);
 
                 if (timeGrowing > GrowthTime)
                 {
