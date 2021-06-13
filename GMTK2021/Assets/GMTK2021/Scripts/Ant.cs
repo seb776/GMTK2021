@@ -9,14 +9,14 @@ public class Ant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       var animation = GetComponent<AntAnimation>();
+        var animation = GetComponent<AntAnimation>();
         animation.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeObject(GameObject go)
@@ -25,11 +25,28 @@ public class Ant : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
     }
 
-    public void DropObject()
+    public void DropObject(GameObject go)
     {
-        if(objectHolder.transform.childCount > 0)
+        var holder = objectHolder.gameObject.transform;
+        if (holder.childCount > 0)
         {
-            Destroy(objectHolder.transform.GetChild(0).gameObject);
+            for (int i = 0; i < holder.childCount; i++)
+            {
+                var item = holder.GetChild(i);
+                item.transform.parent = go.transform;
+
+                var collider = item.transform.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+
+                var fadeOut = item.gameObject.transform.GetChild(0).GetComponent<FadeOut>();
+                if (fadeOut != null)
+                {
+                    fadeOut.Fade();
+                }
+            }
         }
     }
 }

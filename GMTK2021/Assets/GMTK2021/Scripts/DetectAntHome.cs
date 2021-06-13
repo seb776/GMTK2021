@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectAntHome : MonoBehaviour
@@ -7,7 +5,6 @@ public class DetectAntHome : MonoBehaviour
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
-
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +15,7 @@ public class DetectAntHome : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +23,7 @@ public class DetectAntHome : MonoBehaviour
         var ant = other.gameObject.GetComponent<Ant>();
         if (ant != null)
         {
-            ant.DropObject();
+            ant.DropObject(gameObject);
         }
     }
 }
