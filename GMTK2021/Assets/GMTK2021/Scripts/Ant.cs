@@ -6,6 +6,7 @@ using static AntFarm;
 public class Ant : MonoBehaviour
 {
     public Transform objectHolder;
+    public bool die = false;
 
     private bool isBusy = false;
 
@@ -30,7 +31,10 @@ public class Ant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(die)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeObject(GameObject go)
@@ -60,6 +64,12 @@ public class Ant : MonoBehaviour
 
                 go.transform.parent = objectHolder;
                 go.transform.localPosition = Vector3.zero;
+
+                var particleSystem = go.GetComponentInChildren<ParticleSystem>();
+                if(particleSystem != null)
+                {
+                    particleSystem.Play();
+                }
 
                 var splineWalker = gameObject.GetComponent<SplineWalker>();
                 if (splineWalker != null)
@@ -161,5 +171,10 @@ public class Ant : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log(gameObject.tag);
     }
 }

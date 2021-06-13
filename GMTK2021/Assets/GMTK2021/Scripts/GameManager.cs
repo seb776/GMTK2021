@@ -11,15 +11,12 @@ public class GameManager : MonoBehaviour
     public List<TMP_Text> Timer;
 
     private float actualElapsed;
+    private AppSingleton GameData;
     // Start is called before the first frame update
     void Start()
     {
+        GameData = AppSingleton.Instance;
         actualElapsed = GameDuration;
-        //timers = new List<TextMeshPro>();
-        //foreach(GameObject obj in Timer)
-        //{
-        //    timers.Add(obj.GetComponent<TextMeshPro>());
-        //}
     }
 
     // Update is called once per frame
@@ -32,8 +29,9 @@ public class GameManager : MonoBehaviour
         }
         if(actualElapsed < 0f)
         {
-            Debug.Log("Game finished");
+            GameData.GameEnded();
         }
         actualElapsed -= Time.deltaTime;
+        GameData.TimeRemain = actualElapsed;
     }
 }

@@ -9,9 +9,9 @@ public class AntFarm : MonoBehaviour
 
     public void Start()
     {
-        CreateAnt(EAntType.Warrior);
+       /* CreateAnt(EAntType.Warrior);
         CreateAnt(EAntType.Scout);
-        CreateAnt(EAntType.Worker);
+        CreateAnt(EAntType.Worker);*/
     }
 
     public enum EAntType
@@ -28,6 +28,7 @@ public class AntFarm : MonoBehaviour
         switch (type)
         {
             case EAntType.Scout:
+                if (AppSingleton.Instance.ScoutAlive()) return null;
                 prefab = ScoutAntPrefab;
                 tag = EAntType.Scout.ToString();
                 break;
@@ -43,6 +44,16 @@ public class AntFarm : MonoBehaviour
                 return null;
         }
 
+<<<<<<< HEAD
+        GameObject gameObject1 = Instantiate(prefab);
+        var splineCmp = gameObject1.GetComponent<SplineWalker>();
+        splineCmp.spline = DefaultPathObject.GetComponent< BezierSpline>() as BezierSpline;
+        if(EAntType.Scout == type)
+        {
+            AppSingleton.Instance.Scout = gameObject1;
+        }
+        return gameObject1.GetComponent<Ant>();
+=======
         if(prefab != null)
         {
             GameObject gameObject1 = Instantiate(prefab);
@@ -55,6 +66,7 @@ public class AntFarm : MonoBehaviour
         {
             return null;
         }
+>>>>>>> 294b5b2641a452bad458fab1ccf3204bfa33aee6
     }
 }
 

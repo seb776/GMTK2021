@@ -32,6 +32,12 @@ public class FadeOut : MonoBehaviour
                 renderer.material.color = objectColor;
             }
 
+            var particleSystem = GetComponentInChildren<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                particleSystem.Play();
+            }
+
             if (elapsedTime >= duration)
             {
                 if(gameObject.transform.parent != null)
