@@ -15,6 +15,8 @@ public class BezierSpline : MonoBehaviour
 
     List<float> accumulatedDistances = null;
 
+    public GameObject Target;
+
     public float TotalLength
     {
         get
@@ -162,6 +164,11 @@ public class BezierSpline : MonoBehaviour
 
     public void AddCurve()
     {
+        if (points.Count == 0)
+        {
+            Reset();
+        }
+
         Vector3 point = points[points.Count - 1];
         point.x += 2f;
         points.Add(point);
@@ -182,6 +189,47 @@ public class BezierSpline : MonoBehaviour
         }
 
         accumulatedDistances = null;
+    }
+
+    public void RefreshTarget()
+    {
+        if (Target != null)
+        {
+            var targetTransform = Target.transform.position;
+            targetTransform.x = Mathf.Min(3f, targetTransform.x);
+
+            var targetPosition = transform.InverseTransformPoint(targetTransform);
+            points[points.Count - 1] = targetPosition;
+            points[points.Count - 2] = Vector3.Lerp(Vector3.zero, targetPosition, 0.5f);
+            points[points.Count - 3] = Vector3.zero;
+
+            accumulatedDistances = null;
+        }
+    }
+
+    public void ResetOrigin(Transform newTransform)
+    {
+        transform.position = newTransform.position;
+        Reset();
+    }
+
+    public void SetTarget(GameObject go)
+    {
+        if (go != null)
+        {
+            if (Target == null)
+            {
+                Target = go;
+
+                RefreshTarget();
+            }
+        }
+        else if (Target != null)
+        {
+            Target = null;
+            DeleteSelectedPoint(points.Count - 1);
+            accumulatedDistances = null;
+        }
     }
 
     public BezierControlPointMode GetControlPointMode(int index)
@@ -209,7 +257,7 @@ public class BezierSpline : MonoBehaviour
 
     public void DeleteSelectedPoint(int index)
     {
-        switch(index % 3)
+        switch (index % 3)
         {
             case 0:
                 points.RemoveAt(index - 2);
@@ -335,7 +383,7 @@ public class BezierSpline : MonoBehaviour
     //So we have a distance along the curve and we want to find the t-value that generates that distance
     //Alternative 2
     //Create a lookup-table with distances along the curve, then interpolate these distances
-    //This is faster but less accurate than using the iterative Newton–Raphsons method
+    //This is faster but less accurate than using the iterative Newtonï¿½Raphsons method
     //But the difference from far away is barely noticeable
     //https://medium.com/@Acegikmo/the-ever-so-lovely-b%C3%A9zier-curve-eb27514da3bf
     public float FindPositionFromLookupTable(float d)

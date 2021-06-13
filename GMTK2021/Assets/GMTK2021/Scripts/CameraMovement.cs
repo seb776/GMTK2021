@@ -10,6 +10,20 @@ public class CameraMovement : MonoBehaviour
     [Tooltip("Must be odd number !")]
     public float ExponentialSpeedPower = 7;
     public float IgnoreValueUpperThan = 1.1f;
+    public float MaxLeftRange = 6.8f;
+    public float MinRightRange = -2.93f;
+
+    public AnimatedShowAndHide LeftArrow;
+    public AnimatedShowAndHide RightArrow;
+
+    public float AnimationTime;
+
+    private Vector3 start;
+    private Vector3 target;
+    private float elapsedTime;
+    private bool isAnimated = false;
+    private bool isMinized = false;
+    private GameObject toScale;
 
     // Update is called once per frame
     void Update()
@@ -21,9 +35,22 @@ public class CameraMovement : MonoBehaviour
 
         var deltaMousePos = Mathf.Abs(centeredMousePos.x) - BorderScrollThreshold;
 
-        if (deltaMousePos > 0.0f && Mathf.Abs(centeredMousePos.x) <= 1.15f)
+        bool notOnMax = Camera.main.transform.position.z < MaxLeftRange;
+        bool notOnMin = Camera.main.transform.position.z > MinRightRange;
+
+        if (deltaMousePos > 0.0f && Mathf.Abs(centeredMousePos.x) <= 1.15f && (
+                (notOnMax && centeredMousePos.x >= 0) || 
+                (notOnMin && centeredMousePos.x < 0)
+            )
+        )
         {
             Camera.main.transform.position += Vector3.forward * Mathf.Pow(centeredMousePos.x, ExponentialSpeedPower) * Speed * Time.deltaTime;
         }
+
+        if (!notOnMax) LeftArrow.Hide();
+        else LeftArrow.Show();
+
+        if (!notOnMin) RightArrow.Hide();
+        else RightArrow.Show();
     }
 }

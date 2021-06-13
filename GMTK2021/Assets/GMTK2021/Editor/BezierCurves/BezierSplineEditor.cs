@@ -16,6 +16,12 @@ public class BezierSplineInspector : Editor
 
     private int selectedIndex = -1;
 
+    public Object source;
+
+    private void OnEnable()
+    {
+    }
+
     public override void OnInspectorGUI()
     {
         spline = target as BezierSpline;
@@ -37,12 +43,18 @@ public class BezierSplineInspector : Editor
             DrawSelectedPointInspector();
         }
 
-        if (GUILayout.Button("Add Curve"))
+        if (spline.Target == null)
         {
-            Undo.RecordObject(spline, "Add Curve");
-            spline.AddCurve();
-            EditorUtility.SetDirty(spline);
+            if (GUILayout.Button("Add Curve"))
+            {
+                Undo.RecordObject(spline, "Add Curve");
+                spline.AddCurve();
+                EditorUtility.SetDirty(spline);
+            }
         }
+
+        source = EditorGUILayout.ObjectField("Target Object", spline.Target, typeof(GameObject), true);
+        spline.SetTarget(source as GameObject);
     }
 
     private void OnSceneGUI()
@@ -97,6 +109,7 @@ public class BezierSplineInspector : Editor
         {
             size *= 2f;
         }
+
         Handles.color = modeColors[(int)spline.GetControlPointMode(index)];
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
@@ -122,6 +135,7 @@ public class BezierSplineInspector : Editor
     private void DrawSelectedPointInspector()
     {
         GUILayout.Label($"Current Selection: Point {selectedIndex}");
+        GUILayout.Label($"World Coordinates: {spline.transform.TransformPoint(spline.GetControlPoint(selectedIndex))}");
         EditorGUI.BeginChangeCheck();
         Vector3 point = EditorGUILayout.Vector3Field("Position", spline.GetControlPoint(selectedIndex));
         if (EditorGUI.EndChangeCheck())
@@ -141,7 +155,7 @@ public class BezierSplineInspector : Editor
             EditorUtility.SetDirty(spline);
         }
 
-        if(selectedIndex > 3)
+        if (selectedIndex > 6 || (spline.Target == null && selectedIndex > 3))
         {
             if (GUILayout.Button("Delete Selected Point"))
             {
