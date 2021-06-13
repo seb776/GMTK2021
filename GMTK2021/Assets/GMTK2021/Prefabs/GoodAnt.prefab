@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectHolder: {fileID: 214378401018696226}
+  die: 0
 --- !u!1 &3419181324283389794
 GameObject:
   m_ObjectHideFlags: 0
