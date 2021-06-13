@@ -3940,6 +3940,12 @@ PrefabInstance:
       propertyPath: CouldownTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6492781247794318842, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
+      value: '6
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 6492781247900398101, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: m_Name
       value: GUI
@@ -4028,8 +4034,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6492781248245258155, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781248750340421, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
+      value: '6
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 6492781248775580593, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: CouldownTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781249018876438, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781249256064178, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781249288090430, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: m_text
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
