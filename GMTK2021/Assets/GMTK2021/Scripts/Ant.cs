@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static AntFarm;
 
 public class Ant : MonoBehaviour
 {
     public Transform objectHolder;
+    public GameObject TextMesh;
     public bool die = false;
 
     private bool isBusy = false;
@@ -34,6 +36,12 @@ public class Ant : MonoBehaviour
         if(die)
         {
             Destroy(gameObject);
+        }
+        if (this.TextMesh != null)
+        {
+            this.TextMesh.SetActive(CurrentCapacity > 1);
+            var textObj = this.TextMesh.GetComponent<TMP_Text>();
+            textObj.text = CurrentCapacity.ToString();
         }
     }
 
@@ -78,7 +86,7 @@ public class Ant : MonoBehaviour
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        Debug.Log(splineWalker.speed);
+                        //Debug.Log(splineWalker.speed);
                     }
                     splineWalker.Reverse();
                 }
@@ -128,6 +136,8 @@ public class Ant : MonoBehaviour
                 // Spawn current number of ants
                 StartCoroutine(respawnGroups());
             }
+
+
         }
     }
 
@@ -150,6 +160,8 @@ public class Ant : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
         }
+
+
     }
 
     public void GroupAnts(GameObject go)

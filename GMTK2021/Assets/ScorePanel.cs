@@ -18,7 +18,7 @@ public class ScorePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextData.text = "Score:" + AppSingleton.Instance.Score;
+        TextData.text = "Score: " + AppSingleton.Instance.Score;
         PlayerPrefs.SetFloat("Score", AppSingleton.Instance.Score);
     }
 }
