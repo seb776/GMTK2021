@@ -9,6 +9,7 @@ TagManager:
   - Warrior
   - Worker
   - Scout
+  - Projectile
   layers:
   - Default
   - TransparentFX

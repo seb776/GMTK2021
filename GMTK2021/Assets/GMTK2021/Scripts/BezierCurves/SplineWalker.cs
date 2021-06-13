@@ -50,6 +50,13 @@ public class SplineWalker : MonoBehaviour
                         case SplineWalkerMode.Once:
                             elapsedTime = 0f;
                             active = false;
+
+                            var spider = GetComponent<Spider>();
+                            if(spider != null && spider.attackPath != null)
+                            {
+                                spider.attackPath.spline.ResetOrigin(spider.gameObject.transform);
+                                spider.attackPath.active = true;
+                            }
                             break;
                         case SplineWalkerMode.Loop:
                             elapsedTime = 0f;
