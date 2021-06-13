@@ -10414,7 +10414,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52361,6 +52361,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6504488485652026344, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
+      propertyPath: SpawnChance
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 6504488485652026345, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
       propertyPath: m_Name
       value: FoodSpawner
