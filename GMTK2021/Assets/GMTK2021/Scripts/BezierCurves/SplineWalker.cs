@@ -10,6 +10,8 @@ public class SplineWalker : MonoBehaviour
 
     public float stopAt = 1f;
 
+    private float target = 1f;
+
     public bool lookForward;
 
     private float elapsedTime = 0;
@@ -21,6 +23,11 @@ public class SplineWalker : MonoBehaviour
     public float TotalLength { get; set; }
 
     private bool goingForward = true;
+
+    private void Start()
+    {
+        target = stopAt;
+    }
 
     private void Update()
     {
@@ -35,9 +42,10 @@ public class SplineWalker : MonoBehaviour
             {
                 progress = (speed * elapsedTime) / splineLength;
                 position = spline.GetPoint(spline.FindPositionFromLookupTable(speed * elapsedTime));
-                if (progress > stopAt)
+
+                if (progress > target)
                 {
-                    progress = stopAt;
+                    progress = target;
                     switch (mode)
                     {
                         case SplineWalkerMode.Once:
@@ -68,13 +76,14 @@ public class SplineWalker : MonoBehaviour
             }
             else
             {
-                progress = stopAt - (speed * elapsedTime / splineLength);
-                position = spline.GetPoint(spline.FindPositionFromLookupTable(splineLength - (speed * elapsedTime)));
+                progress = target - (speed * elapsedTime / splineLength);
+                position = spline.GetPoint(spline.FindPositionFromLookupTable((target * splineLength) - (speed * elapsedTime)));
 
                 if (progress < 0f)
                 {
                     progress = 0f;
                     elapsedTime = 0f;
+                    target = stopAt;
                     goingForward = true;
 
                     var antAnimation = GetComponent<AntAnimation>();
@@ -97,5 +106,10 @@ public class SplineWalker : MonoBehaviour
                 transform.LookAt(position + spline.GetDirection(progress));
             }
         }
+    }
+
+    public void Reverse()
+    {
+        target = progress;
     }
 }

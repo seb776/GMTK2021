@@ -22,7 +22,7 @@ public class DetectAntInRange : MonoBehaviour
         var ant = other.gameObject.GetComponent<Ant>();
         if(ant != null)
         {
-            ant.TakeObject(this.gameObject);
+            ant.TakeObject(gameObject);
         }
     }
 }
