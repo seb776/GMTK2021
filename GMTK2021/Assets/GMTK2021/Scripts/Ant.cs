@@ -77,7 +77,7 @@ public class Ant : MonoBehaviour
                     var consumable = go.GetComponent<Consumable>();
                     if (consumable != null)
                     {
-                        //splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.requiredCapacity);
+                        splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
                         //Debug.Log(splineWalker.speed);
                     }
                     splineWalker.Reverse();

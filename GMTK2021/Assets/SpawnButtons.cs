@@ -59,7 +59,6 @@ public class SpawnButtons : MonoBehaviour
         {
             if (ui.transform.position.y > coordY)
             {
-                Debug.Log(ui.transform.position);
                 ui.transform.position -= Vector3.Lerp(Vector3.zero, speed, elapsedTimeHidden / AccelerationTime) * Time.deltaTime;
             }
             if(ui.transform.position.y < coordY)
