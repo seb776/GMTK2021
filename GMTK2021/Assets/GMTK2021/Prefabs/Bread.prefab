@@ -5558,4 +5558,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 3
-  maxCapacity: 0
+  maxCapacity: 5
