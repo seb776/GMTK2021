@@ -168,11 +168,10 @@ public class Ant : MonoBehaviour
                 var splineWalker = GetComponent<SplineWalker>();
                 if (splineWalker != null)
                 {
-                    var consumable = objectHolder.gameObject.GetComponent<Consumable>();
+                    var consumable = objectHolder.gameObject.GetComponentInChildren<Consumable>();
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        //Debug.Log(splineWalker.speed);
                     }
                 }
             }
