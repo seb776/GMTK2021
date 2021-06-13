@@ -20,7 +20,7 @@ public class Ant : MonoBehaviour
     {
         get
         {
-            return workerAntsNumber + warriorAntsNumber;
+            return workerAntsNumber + (warriorAntsNumber * 3);
         }
     }
 
@@ -52,7 +52,7 @@ public class Ant : MonoBehaviour
         if (go.transform.parent == null)
         {
             // I'm not busy, I can pick it up, otherwise I ignore it
-            if (!isBusy)
+            if (!isBusy && tag == EAntType.Worker.ToString())
             {
                 isBusy = true;
                 SoundManager.Instance.PlayTake();
@@ -161,8 +161,6 @@ public class Ant : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
         }
-
-
     }
 
     public void GroupAnts(GameObject go)
@@ -203,9 +201,12 @@ public class Ant : MonoBehaviour
 
     public void TangoDown()
     {
-        var ghostInstance = GameObject.Instantiate(ghost);
-        ghostInstance.transform.position = transform.position;
+        if(!isBusy)
+        {
+            var ghostInstance = GameObject.Instantiate(ghost);
+            ghostInstance.transform.position = transform.position;
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

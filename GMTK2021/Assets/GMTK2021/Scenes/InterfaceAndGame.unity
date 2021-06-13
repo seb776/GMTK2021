@@ -4457,7 +4457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1098916706}
-  speed: 3
+  speed: 0.8
   active: 0
   stopAt: 1
   lookForward: 0
@@ -25783,10 +25783,10 @@ MonoBehaviour:
   points:
   - {x: 0, y: 0, z: 0}
   - {x: 2.5, y: 0, z: 0}
+  - {x: 15, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
   modes: 0000000000000000
-  loop: 0
+  loop: 1
   Target: {fileID: 0}
 --- !u!1 &1104035964
 GameObject:

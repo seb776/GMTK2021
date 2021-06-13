@@ -52,7 +52,7 @@ public class SplineWalker : MonoBehaviour
                             active = false;
 
                             var spider = GetComponent<Spider>();
-                            if(spider != null && spider.attackPath != null)
+                            if (spider != null && spider.attackPath != null)
                             {
                                 spider.attackPath.spline.ResetOrigin(spider.gameObject.transform);
                                 spider.attackPath.active = true;
@@ -84,7 +84,7 @@ public class SplineWalker : MonoBehaviour
                 }
                 else
                 {
-                    position = spline.GetPoint(spline.FindPositionFromLookupTable(progress *  splineLength));
+                    position = spline.GetPoint(spline.FindPositionFromLookupTable(progress * splineLength));
                 }
             }
             else
@@ -116,7 +116,7 @@ public class SplineWalker : MonoBehaviour
                 }
             }
 
-            if(position != null)
+            if (position != null)
             {
                 transform.localPosition = new Vector3(position.Value.x, position.Value.y, position.Value.z);
                 if (lookForward)

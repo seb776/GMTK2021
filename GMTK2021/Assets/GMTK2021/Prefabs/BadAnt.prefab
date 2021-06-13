@@ -1202,7 +1202,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 0.4
   m_Center: {x: -0.5, y: 0, z: 0}
 --- !u!114 &6804099228225919542
 MonoBehaviour:
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 0}
-  speed: 1
+  speed: 1.5
   active: 1
   stopAt: 1
   lookForward: 0
