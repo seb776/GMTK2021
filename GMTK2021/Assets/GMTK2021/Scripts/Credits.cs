@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 
 public class Credits : MonoBehaviour
 {
@@ -37,13 +38,13 @@ public class Credits : MonoBehaviour
         }
     }
 
-    public TextMesh TextData { get; set; }
+    public TMP_Text TextData { get; set; }
     public TextAsset CreditFile;
 
     // Start is called before the first frame update
     void Start()
     {
-        TextData = GetComponent<TextMesh>();
+        TextData = GetComponent<TMP_Text>();
         if (!TextData)
             return;
 
