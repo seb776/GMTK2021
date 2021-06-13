@@ -106,6 +106,12 @@ public class Ant : MonoBehaviour
     public void DropObject(GameObject go)
     {
         var holder = objectHolder.gameObject.transform;
+        var consomable = go.GetComponent<Consumable>();
+
+
+        if (consomable.ScorePoints > 0)
+            AppSingleton.Instance.Score += consomable.ScorePoints;
+
         if (holder.childCount > 0)
         {
             for (int childIndex = 0; childIndex < holder.childCount; childIndex++)
@@ -162,11 +168,10 @@ public class Ant : MonoBehaviour
                 var splineWalker = GetComponent<SplineWalker>();
                 if (splineWalker != null)
                 {
-                    var consumable = objectHolder.gameObject.GetComponent<Consumable>();
+                    var consumable = objectHolder.gameObject.GetComponentInChildren<Consumable>();
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        Debug.Log(splineWalker.speed);
                     }
                 }
             }

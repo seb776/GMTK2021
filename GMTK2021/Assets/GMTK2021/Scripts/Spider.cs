@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumable : MonoBehaviour
+public class Spider : MonoBehaviour
 {
-    public float maxSpeed;
-    public int maxCapacity;
-    public int ScorePoints;
-    public int TimeBonus;
+    public SplineWalker attackPath;
 
     // Start is called before the first frame update
     void Start()

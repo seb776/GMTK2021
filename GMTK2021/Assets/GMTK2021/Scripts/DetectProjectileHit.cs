@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumable : MonoBehaviour
+public class DetectProjectileHit : MonoBehaviour
 {
-    public float maxSpeed;
-    public int maxCapacity;
-    public int ScorePoints;
-    public int TimeBonus;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +14,14 @@ public class Consumable : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var ant = other.gameObject.GetComponent<Ant>();
+        if(ant != null)
+        {
+            Debug.Log("tango down");
+        }
     }
 }

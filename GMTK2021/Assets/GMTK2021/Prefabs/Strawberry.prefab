@@ -200,3 +200,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 3
   maxCapacity: 0
+  ScorePoints: 20
+  TimeBonus: 5
