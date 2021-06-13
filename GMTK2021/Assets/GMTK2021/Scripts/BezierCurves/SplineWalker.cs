@@ -41,9 +41,9 @@ public class SplineWalker : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime * speed;
                 progress = Mathf.Clamp01(elapsedTime / splineLength);
-                Debug.Log(progress);
                 if (progress >= target)
                 {
+                    float actualProgress = progress;
                     progress = target;
                     switch (mode)
                     {
@@ -56,7 +56,13 @@ public class SplineWalker : MonoBehaviour
                             progress = 0f;
                             break;
                         case SplineWalkerMode.PingPong:
-                            elapsedTime = 0f;
+                            Debug.Log(actualProgress);
+                            if (actualProgress < 1f)
+                                elapsedTime = (1f - actualProgress) * splineLength;
+                            else
+                                elapsedTime = 0f;
+
+                            Debug.Log(elapsedTime);
                             goingForward = false;
                             var antAnimation = GetComponent<AntAnimation>();
                             if (antAnimation != null)
