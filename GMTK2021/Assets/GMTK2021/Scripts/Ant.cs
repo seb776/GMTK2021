@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static AntFarm;
 
 public class Ant : MonoBehaviour
 {
     public Transform objectHolder;
+    public GameObject TextMesh;
     public bool die = false;
 
     private bool isBusy = false;
@@ -34,6 +36,12 @@ public class Ant : MonoBehaviour
         if(die)
         {
             Destroy(gameObject);
+        }
+        if (this.TextMesh != null)
+        {
+            this.TextMesh.SetActive(CurrentCapacity > 1);
+            var textObj = this.TextMesh.GetComponent<TMP_Text>();
+            textObj.text = CurrentCapacity.ToString();
         }
     }
 
@@ -78,7 +86,7 @@ public class Ant : MonoBehaviour
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        Debug.Log(splineWalker.speed);
+                        //Debug.Log(splineWalker.speed);
                     }
                     splineWalker.Reverse();
                 }
@@ -126,24 +134,34 @@ public class Ant : MonoBehaviour
 
                 isBusy = false;
                 // Spawn current number of ants
-                for(int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
+                StartCoroutine(respawnGroups());
+            }
+
+
+        }
+    }
+
+    public IEnumerator respawnGroups()
+    {
+        for (int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
+        {
+            if (Random.Range(0, 1) % 2 == 0)
+            {
+                if (workerAntsNumber > 1)
                 {
-                    if(Random.Range(0, 1) % 2 == 0)
-                    {
-                        if(workerAntsNumber > 1)
-                        {
-                            workerAntsNumber -= 1;
-                            AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
-                        }
-                        else if(warriorAntsNumber > 0)
-                        {
-                            warriorAntsNumber -= 1;
-                            AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
-                        }
-                    }
+                    workerAntsNumber -= 1;
+                    AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
+                }
+                else if (warriorAntsNumber > 0)
+                {
+                    warriorAntsNumber -= 1;
+                    AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
                 }
             }
+            yield return new WaitForSeconds(1f);
         }
+
+
     }
 
     public void GroupAnts(GameObject go)
