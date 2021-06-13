@@ -33,9 +33,9 @@ public class SineRotationAnimation : MonoBehaviour
         float f = Mathf.Sin(Speed * Time.realtimeSinceStartup+ TimeOffset) * 0.5f + 0.5f;
         if (IsGrassAnim)
         {
-            f = ((Mathf.Sin(Speed * Time.realtimeSinceStartup + TimeOffset + this.transform.position.x*0.5f + this.transform.position.z) *0.25f
-                +Mathf.Sin(Speed*Time.realtimeSinceStartup*0.5f+TimeOffset + this.transform.position.x + this.transform.position.z*0.5f) *0.5f
-                + Mathf.Sin(Speed * Time.realtimeSinceStartup * 0.35f + TimeOffset+this.transform.position.x + this.transform.position.z)
+            f = ((Mathf.Sin(Speed * Time.realtimeSinceStartup + TimeOffset + this.transform.localPosition.x*0.5f + this.transform.localPosition.z) *0.25f
+                +Mathf.Sin(Speed*Time.realtimeSinceStartup*0.5f+TimeOffset + this.transform.localPosition.x + this.transform.localPosition.z*0.5f) *0.5f
+                + Mathf.Sin(Speed * Time.realtimeSinceStartup * 0.35f + TimeOffset+this.transform.localPosition.x + this.transform.localPosition.z)
                 ) /3.0f)
                 
                 * 0.5f + 0.5f;
