@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GMTK2021/Scenes/Credits.unity
     guid: f7c5b07ba51f395459995e70b8e4dfdc
+  - enabled: 1
+    path: Assets/GMTK2021/Scenes/EndGame.unity
+    guid: adf16f955e7dea14bb3a3581b6bcbbb6
   m_configObjects: {}
