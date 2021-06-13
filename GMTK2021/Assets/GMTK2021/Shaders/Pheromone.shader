@@ -8,7 +8,7 @@ Shader "Unlit/Pheromone"
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         LOD 100
-		Blend SrcAlpha One
+		Blend SrcColor OneMinusSrcColor
 
         Pass
         {
@@ -54,7 +54,8 @@ Shader "Unlit/Pheromone"
 
 			float3 rdr(float2 uv)
 			{
-				float3 col = float3(0., 0., 0.);// tex2D(_MainTex, uv).xyz;
+				float2 ouv = uv;
+				float3 col = float3(1.,1.,1.)*0.;// tex2D(_MainTex, uv).xyz;
 				uv = uv * 5. + float2(-0.1, -1.5);
 
 
@@ -70,11 +71,11 @@ Shader "Unlit/Pheromone"
 				for (int i = 0; i < 7; ++i)
 				{
 					float fi = float(i);
-					float2 p = uv + float2(sin(fi*10. + _Time.y+ _OffsetTime)*.3, fmod(_OffsetTime +fi + _Time.y+.2*_Time.y*(fi + 1.), 2.));
+					float2 p = uv + float2(sin(fi*10. + _Time.y+ _OffsetTime)*.7, fmod(_OffsetTime +fi + _Time.y+.2*_Time.y*(fi + 1.), 2.));
 					float shape = _cir(p, 2.*lerp(.05, .1, saturate(fi / 7.)));
-					col += .4*float3(0.878 + (cos(fi)*.5 + .5)*.5, 0.584 + (sin(fi)*.5 + .5)*.5, 0.933)*(1. - saturate(shape*10.))*(1. - saturate(abs((uv.y + .75)*2.)));
+					col += .4*saturate(float3(0.878 + (cos(fi)*.5 + .5)*.5, 0.584 + (sin(fi)*.5 + .5)*.5, 0.933))*(1. - saturate(shape*10.));// *(1. - saturate(abs((uv.y + .75)*2.)));
 				}
-
+				col *= saturate(1.-abs(ouv.y*5.));
 				return col;
 			}
 
@@ -85,7 +86,7 @@ Shader "Unlit/Pheromone"
 				fixed4 col = fixed4(0.,0.,0.,1.);
 				float2 uv = i.uv - float2(0.5, 0.5);
 
-				col.xyz = rdr(uv*.5);
+				col.xyz = rdr(uv*.5)*2.;
 				col.w = length(col.xyz);
 
 				//col.xyz = float3(1., 1., 1.);
