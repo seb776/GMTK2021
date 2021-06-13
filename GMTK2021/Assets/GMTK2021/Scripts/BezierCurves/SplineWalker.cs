@@ -41,22 +41,35 @@ public class SplineWalker : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime * speed;
                 progress = Mathf.Clamp01(elapsedTime / splineLength);
-                Debug.Log(progress);
                 if (progress >= target)
                 {
+                    float actualProgress = progress;
                     progress = target;
                     switch (mode)
                     {
                         case SplineWalkerMode.Once:
                             elapsedTime = 0f;
                             active = false;
+
+                            var spider = GetComponent<Spider>();
+                            if(spider != null && spider.attackPath != null)
+                            {
+                                spider.attackPath.spline.ResetOrigin(spider.gameObject.transform);
+                                spider.attackPath.active = true;
+                            }
                             break;
                         case SplineWalkerMode.Loop:
                             elapsedTime = 0f;
                             progress = 0f;
                             break;
                         case SplineWalkerMode.PingPong:
-                            elapsedTime = 0f;
+                            Debug.Log(actualProgress);
+                            if (actualProgress < 1f)
+                                elapsedTime = (1f - actualProgress) * splineLength;
+                            else
+                                elapsedTime = 0f;
+
+                            Debug.Log(elapsedTime);
                             goingForward = false;
                             var antAnimation = GetComponent<AntAnimation>();
                             if (antAnimation != null)
