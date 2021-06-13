@@ -7,7 +7,7 @@ public class FadeOut : MonoBehaviour
     public float duration;
 
     private bool fade;
-    private float elapsedTime;
+    private float elapsedTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,11 @@ public class FadeOut : MonoBehaviour
 
             if (elapsedTime >= duration)
             {
-                Destroy(gameObject);
+                if(gameObject.transform.parent != null)
+                {
+                    Destroy(gameObject.transform.parent.gameObject);
+                }
+                fade = false;
             }
         }
     }
