@@ -31,7 +31,6 @@ public class SpawnButtons : MonoBehaviour
     {
         if(panelScout != null && panelMain != null)
         {
-            Debug.Log(AppSingleton.Instance.ScoutAlive());
             if(AppSingleton.Instance.ScoutAlive())
             {
                 MoveDown(panelScout, HideCoordY);
@@ -42,6 +41,7 @@ public class SpawnButtons : MonoBehaviour
                 MoveDown(panelMain, HideCoordY);
             }
         }
+
         if(isWaiting)
         {
             MoveUp(panelTimer, ShowCoordYTimer);
@@ -87,6 +87,4 @@ public class SpawnButtons : MonoBehaviour
             }
         }
     }
-
-
 }
