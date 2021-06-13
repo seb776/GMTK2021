@@ -8,10 +8,17 @@ public class Ant : MonoBehaviour
     public Transform objectHolder;
 
     private bool isBusy = false;
-    private bool isGroup = false;
 
-    private int workerAntsNumber;
-    private int warriorAntsNumber;
+    private int workerAntsNumber = 0;
+    private int warriorAntsNumber = 0;
+
+    private int CurrentCapacity
+    {
+        get
+        {
+            return workerAntsNumber + warriorAntsNumber;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +35,28 @@ public class Ant : MonoBehaviour
 
     public void TakeObject(GameObject go)
     {
-        // If the object doesn't have a parent and I'm not busy
+        // If the object doesn't have a parent
         if (go.transform.parent == null)
         {
+            // I'm not busy, I can pick it up, otherwise I ignore it
             if (!isBusy)
             {
                 isBusy = true;
+
+                EAntType type;
+                System.Enum.TryParse(gameObject.tag, out type);
+                switch (type)
+                {
+                    case EAntType.Worker:
+                        workerAntsNumber = 1;
+                        warriorAntsNumber = 0;
+                        break;
+
+                    case EAntType.Warrior:
+                        workerAntsNumber = 0;
+                        warriorAntsNumber = 1;
+                        break;
+                }
 
                 go.transform.parent = objectHolder;
                 go.transform.localPosition = Vector3.zero;
@@ -41,20 +64,27 @@ public class Ant : MonoBehaviour
                 var splineWalker = gameObject.GetComponent<SplineWalker>();
                 if (splineWalker != null)
                 {
+                    var consumable = go.GetComponent<Consumable>();
+                    if (consumable != null)
+                    {
+                        //splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.requiredCapacity);
+                        //Debug.Log(splineWalker.speed);
+                    }
                     splineWalker.Reverse();
                 }
             }
         }
-        else
+        else if (go.transform.parent.parent != null)
         {
-            if (isGroup || isBusy)
+            //TODO: check capacity
+            if (!isBusy)
             {
                 // Fusion ants
-                var currentHolder = go.transform.parent.parent;
-                if (currentHolder != null)
+                var currentHolderAnt = go.transform.parent.parent.GetComponent<Ant>();
+                if (currentHolderAnt != null && currentHolderAnt.gameObject != gameObject)
                 {
-                    var currentHolderAnt = go.transform.parent.parent.GetComponent<Ant>();
-                    if (currentHolderAnt != null && currentHolderAnt.gameObject != gameObject)
+                    var consumable = go.GetComponent<Consumable>();
+                    if (consumable != null && (currentHolderAnt.CurrentCapacity < consumable.maxCapacity))
                     {
                         currentHolderAnt.GroupAnts(gameObject);
                     }
@@ -68,16 +98,10 @@ public class Ant : MonoBehaviour
         var holder = objectHolder.gameObject.transform;
         if (holder.childCount > 0)
         {
-            for (int i = 0; i < holder.childCount; i++)
+            for (int childIndex = 0; childIndex < holder.childCount; childIndex++)
             {
-                var item = holder.GetChild(i);
+                var item = holder.GetChild(childIndex);
                 item.transform.parent = go.transform;
-
-                var collider = item.transform.GetComponent<Collider>();
-                if (collider != null)
-                {
-                    collider.enabled = false;
-                }
 
                 var fadeOut = item.gameObject.transform.GetChild(0).GetComponent<FadeOut>();
                 if (fadeOut != null)
@@ -86,33 +110,56 @@ public class Ant : MonoBehaviour
                 }
 
                 isBusy = false;
+                // Spawn current number of ants
+                for(int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
+                {
+                    if(Random.Range(0, 1) % 2 == 0)
+                    {
+                        if(workerAntsNumber > 1)
+                        {
+                            workerAntsNumber -= 1;
+                            AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
+                        }
+                        else if(warriorAntsNumber > 0)
+                        {
+                            warriorAntsNumber -= 1;
+                            AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
+                        }
+                    }
+                }
             }
         }
     }
 
     public void GroupAnts(GameObject go)
     {
-        /*
         if (go != null)
         {
             var otherAnt = go.GetComponent<Ant>();
-            if (otherAnt != null && !otherAnt.isGroup)
+            if (otherAnt != null && !otherAnt.isBusy)
             {
-                isGroup = true;
-                if (go.tag == EAntType.Worker.ToString())
+                if (otherAnt.gameObject.tag == EAntType.Worker.ToString())
                 {
                     workerAntsNumber += 1;
-                    Destroy(go.gameObject);
+                    Destroy(go);
                 }
-                else if (go.tag == EAntType.Warrior.ToString())
+                else if (otherAnt.gameObject.tag == EAntType.Warrior.ToString())
                 {
                     warriorAntsNumber += 1;
-                    Destroy(go.gameObject);
+                    Destroy(go);
                 }
 
-                Debug.Log($"Grouped! {workerAntsNumber} workers and {warriorAntsNumber} warriors");
+                var splineWalker = GetComponent<SplineWalker>();
+                if (splineWalker != null)
+                {
+                    var consumable = objectHolder.gameObject.GetComponent<Consumable>();
+                    if (consumable != null)
+                    {
+                        //splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.requiredCapacity);
+                        //Debug.Log(splineWalker.speed);
+                    }
+                }
             }
         }
-        */
     }
 }
