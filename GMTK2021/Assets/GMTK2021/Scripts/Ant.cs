@@ -78,7 +78,7 @@ public class Ant : MonoBehaviour
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        //Debug.Log(splineWalker.speed);
+                        Debug.Log(splineWalker.speed);
                     }
                     splineWalker.Reverse();
                 }
@@ -166,7 +166,7 @@ public class Ant : MonoBehaviour
                     if (consumable != null)
                     {
                         splineWalker.speed = consumable.maxSpeed * ((float)CurrentCapacity / consumable.maxCapacity);
-                        //Debug.Log(splineWalker.speed);
+                        Debug.Log(splineWalker.speed);
                     }
                 }
             }
