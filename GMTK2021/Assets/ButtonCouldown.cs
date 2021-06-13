@@ -18,14 +18,17 @@ public class ButtonCouldown : MonoBehaviour
     private Vector3 start;
     private float timeGrowing;
 
-    private bool waitCouldown = false;
-    private float timeCouldown;
+    private AppSingleton GameData;
+    private bool isMasterTimer = false;
 
+    private SpawnButtons buttonManager; 
 
     // Start is called before the first frame update
     void Start()
     {
+        GameData = AppSingleton.Instance;
         ChangeText(CouldownTime.ToString());
+        buttonManager = transform.parent.parent.GetComponent<SpawnButtons>();
     }
 
     private void ChangeText(string t)
@@ -39,19 +42,23 @@ public class ButtonCouldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (waitCouldown)
+        if (GameData.spawnUnavailable)
         {
-            timeCouldown += Time.deltaTime;
-            ChangeText((CouldownTime - timeCouldown).ToString("0"));
-            if(timeCouldown > CouldownTime)
+            if (isMasterTimer)
             {
-                waitCouldown = false;
-                ChangeText(CouldownTime.ToString());
+                GameData.TimerSpawn += Time.deltaTime;
+                ChangeText((CouldownTime - GameData.TimerSpawn).ToString("0"));
+                if (AppSingleton.Instance.TimerSpawn > CouldownTime)
+                {
+                    GameData.spawnUnavailable = false;
+                    isMasterTimer = false;
+                    buttonManager.isWaiting = false;
+                }
+                var localScale = Larve.transform.localScale;
+                localScale = Vector3.Lerp(Vector3.zero, Vector3.one, GameData.TimerSpawn / CouldownTime);
+                Larve.transform.localScale = localScale;
             }
-
-            var localScale = Larve.transform.localScale;
-            localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timeCouldown / CouldownTime);
-            Larve.transform.localScale = localScale;
+            
         }
         else
         {
@@ -87,12 +94,12 @@ public class ButtonCouldown : MonoBehaviour
 
     public void MouseClickLaunch(int type)
     {
-        if (!waitCouldown)
+        if (!GameData.spawnUnavailable && GameData.SpawnerAllies.CreateAnt((AntFarm.EAntType)type))
         {
-            timeCouldown = 0;
-            waitCouldown = true;
-            Debug.Log("Click");
-            AppSingleton.Instance.SpawnerAllies.CreateAnt((AntFarm.EAntType)type);
+            GameData.TimerSpawn = 0;
+            GameData.spawnUnavailable = true;
+            isMasterTimer = true;
+            buttonManager.isWaiting = true;
         }
     }
 }

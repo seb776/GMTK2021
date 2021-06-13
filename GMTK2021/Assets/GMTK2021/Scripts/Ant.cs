@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ant : MonoBehaviour
 {
     public Transform objectHolder;
+    public bool die = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,10 @@ public class Ant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(die)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeObject(GameObject go)
@@ -48,5 +52,10 @@ public class Ant : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log(gameObject.tag);
     }
 }

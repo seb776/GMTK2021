@@ -45,12 +45,20 @@ public class CameraMovement : MonoBehaviour
         )
         {
             Camera.main.transform.position += Vector3.forward * Mathf.Pow(centeredMousePos.x, ExponentialSpeedPower) * Speed * Time.deltaTime;
+            if (Camera.main.transform.position.z > MaxLeftRange) Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, MaxLeftRange);
+            else if (Camera.main.transform.position.z < MinRightRange) Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, MinRightRange);
         }
 
-        if (!notOnMax) LeftArrow.Hide();
+        if (!notOnMax)
+        {
+            LeftArrow.Hide();
+        }
         else LeftArrow.Show();
 
-        if (!notOnMin) RightArrow.Hide();
+        if (!notOnMin)
+        {
+            RightArrow.Hide();
+        }
         else RightArrow.Show();
     }
 }
