@@ -34,14 +34,13 @@ public class SplineWalker : MonoBehaviour
         if (active && spline != null)
         {
             elapsedTime += Time.deltaTime;
-            Vector3 position;
+            Vector3? position = null;
             //! Uncomment to follow target
             //spline.RefreshTarget();
             float splineLength = spline.TotalLength;
             if (goingForward)
             {
                 progress = (speed * elapsedTime) / splineLength;
-                position = spline.GetPoint(spline.FindPositionFromLookupTable(speed * elapsedTime));
 
                 if (progress > target)
                 {
@@ -73,11 +72,14 @@ public class SplineWalker : MonoBehaviour
                             break;
                     }
                 }
+                else
+                {
+                    position = spline.GetPoint(spline.FindPositionFromLookupTable(speed * elapsedTime));
+                }
             }
             else
             {
                 progress = target - (speed * elapsedTime / splineLength);
-                position = spline.GetPoint(spline.FindPositionFromLookupTable((target * splineLength) - (speed * elapsedTime)));
 
                 if (progress < 0f)
                 {
@@ -98,12 +100,19 @@ public class SplineWalker : MonoBehaviour
                         transform.localScale = localScale;
                     }
                 }
+                else
+                {
+                    position = spline.GetPoint(spline.FindPositionFromLookupTable((target * splineLength) - (speed * elapsedTime)));
+                }
             }
 
-            transform.localPosition = new Vector3(position.x, position.y, position.z);
-            if (lookForward)
+            if(position != null)
             {
-                transform.LookAt(position + spline.GetDirection(progress));
+                transform.localPosition = new Vector3(position.Value.x, position.Value.y, position.Value.z);
+                if (lookForward)
+                {
+                    transform.LookAt(position.Value + spline.GetDirection(progress));
+                }
             }
         }
     }
