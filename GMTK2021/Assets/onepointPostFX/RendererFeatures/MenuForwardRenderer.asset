@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6380ec36a840b8a45a5385dfd74ccfeb, type: 3}
   m_Name: BlitBloom
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 550
     blitMaterial: {fileID: 2100000, guid: a37a79ed746c56d4ea6e2110097acdd8, type: 2}
