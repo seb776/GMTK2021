@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2846214, g: 0.37120992, b: 0.498806, a: 1}
+  m_IndirectSpecularColor: {r: 0.28462112, g: 0.37120938, b: 0.49880487, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 72844865}
   - component: {fileID: 72844864}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: BackgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3932,6 +3932,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2478241393922163712, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: CouldownTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2478241393962181171, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: CouldownTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6492781247900398101, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: m_Name
       value: GUI
@@ -4019,6 +4027,10 @@ PrefabInstance:
     - target: {fileID: 6492781247900398105, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492781248775580593, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: CouldownTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
@@ -4433,7 +4445,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 10}
+  m_Size: {x: 0.3414634, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &170852400
 Rigidbody:
@@ -10393,6 +10405,63 @@ MonoBehaviour:
   AxisRotation: {x: 0, y: 1, z: 0}
   IsGrassAnim: 1
   GrassRenderer: {fileID: 1438673753}
+--- !u!1001 &503369207
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821581, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444867803658821583, guid: 7a602564daf74b04d830291edac73b26, type: 3}
+      propertyPath: m_Name
+      value: SoundEffects
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a602564daf74b04d830291edac73b26, type: 3}
 --- !u!1 &504923905
 GameObject:
   m_ObjectHideFlags: 0

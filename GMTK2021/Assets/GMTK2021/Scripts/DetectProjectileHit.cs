@@ -21,7 +21,7 @@ public class DetectProjectileHit : MonoBehaviour
         var ant = other.gameObject.GetComponent<Ant>();
         if(ant != null)
         {
-            Debug.Log("tango down");
+            ant.TangoDown();
         }
     }
 }

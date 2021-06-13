@@ -53,12 +53,12 @@ public class ButtonCouldown : MonoBehaviour
                     GameData.spawnUnavailable = false;
                     isMasterTimer = false;
                     buttonManager.isWaiting = false;
+                    SoundManager.Instance.PlayLarve();
                 }
                 var localScale = Larve.transform.localScale;
                 localScale = Vector3.Lerp(Vector3.zero, Vector3.one, GameData.TimerSpawn / CouldownTime);
                 Larve.transform.localScale = localScale;
             }
-            
         }
         else
         {

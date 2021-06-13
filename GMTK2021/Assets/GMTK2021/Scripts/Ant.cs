@@ -8,6 +8,7 @@ public class Ant : MonoBehaviour
 {
     public Transform objectHolder;
     public GameObject TextMesh;
+    public GameObject ghost;
     public bool die = false;
 
     private bool isBusy = false;
@@ -54,6 +55,7 @@ public class Ant : MonoBehaviour
             if (!isBusy)
             {
                 isBusy = true;
+                SoundManager.Instance.PlayTake();
 
                 EAntType type;
                 System.Enum.TryParse(gameObject.tag, out type);
@@ -131,13 +133,12 @@ public class Ant : MonoBehaviour
                 {
                     fadeOut.Fade();
                 }
-
                 isBusy = false;
+                SoundManager.Instance.PlayDrop();
+
                 // Spawn current number of ants
                 StartCoroutine(respawnGroups());
             }
-
-
         }
     }
 
@@ -198,5 +199,13 @@ public class Ant : MonoBehaviour
     private void OnDestroy()
     {
         Debug.Log(gameObject.tag);
+    }
+
+    public void TangoDown()
+    {
+        var ghostInstance = GameObject.Instantiate(ghost);
+        ghostInstance.transform.position = transform.position;
+
+        Destroy(gameObject);
     }
 }

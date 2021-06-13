@@ -447,6 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectHolder: {fileID: 214378401018696226}
   TextMesh: {fileID: 4358513010949568883}
+  ghost: {fileID: 4636772892250112215, guid: 79eafff59edf6de48830448216915dcd, type: 3}
   die: 0
 --- !u!1 &3419181324283389794
 GameObject:
