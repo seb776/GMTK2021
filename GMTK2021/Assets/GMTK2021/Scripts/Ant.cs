@@ -61,6 +61,12 @@ public class Ant : MonoBehaviour
                 go.transform.parent = objectHolder;
                 go.transform.localPosition = Vector3.zero;
 
+                var particleSystem = go.GetComponentInChildren<ParticleSystem>();
+                if(particleSystem != null)
+                {
+                    particleSystem.Play();
+                }
+
                 var splineWalker = gameObject.GetComponent<SplineWalker>();
                 if (splineWalker != null)
                 {
