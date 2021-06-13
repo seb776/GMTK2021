@@ -33,16 +33,16 @@ public class SplineWalker : MonoBehaviour
     {
         if (active && spline != null)
         {
-            elapsedTime += Time.deltaTime;
             Vector3? position = null;
             //! Uncomment to follow target
             //spline.RefreshTarget();
             float splineLength = spline.TotalLength;
             if (goingForward)
             {
-                progress = (speed * elapsedTime) / splineLength;
-
-                if (progress > target)
+                elapsedTime += Time.deltaTime * speed;
+                progress = Mathf.Clamp01(elapsedTime / splineLength);
+                Debug.Log(progress);
+                if (progress >= target)
                 {
                     progress = target;
                     switch (mode)
@@ -74,16 +74,17 @@ public class SplineWalker : MonoBehaviour
                 }
                 else
                 {
-                    position = spline.GetPoint(spline.FindPositionFromLookupTable(speed * elapsedTime));
+                    position = spline.GetPoint(spline.FindPositionFromLookupTable(progress *  splineLength));
                 }
             }
             else
             {
-                progress = target - (speed * elapsedTime / splineLength);
+                elapsedTime += Time.deltaTime * speed;
+                progress = Mathf.Clamp01(elapsedTime / splineLength);
 
-                if (progress < 0f)
+                if (progress >= target)
                 {
-                    progress = 0f;
+                    //progress = 0f;
                     elapsedTime = 0f;
                     target = stopAt;
                     goingForward = true;
@@ -102,7 +103,7 @@ public class SplineWalker : MonoBehaviour
                 }
                 else
                 {
-                    position = spline.GetPoint(spline.FindPositionFromLookupTable((target * splineLength) - (speed * elapsedTime)));
+                    position = spline.GetPoint(spline.FindPositionFromLookupTable(splineLength - (progress * splineLength)));
                 }
             }
 
