@@ -63,7 +63,6 @@ public class SplineWalker : MonoBehaviour
                             progress = 0f;
                             break;
                         case SplineWalkerMode.PingPong:
-                            Debug.Log(actualProgress);
                             if (actualProgress < 1f)
                                 elapsedTime = (1f - actualProgress) * splineLength;
                             else
@@ -94,7 +93,6 @@ public class SplineWalker : MonoBehaviour
                 progress = Mathf.Clamp01(elapsedTime / splineLength);
                 if (progress >= 1f)
                 {
-                    Debug.Log(progress);
                     //progress = 0f;
                     elapsedTime = 0f;
                     target = stopAt;
