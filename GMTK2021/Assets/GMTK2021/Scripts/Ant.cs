@@ -106,6 +106,12 @@ public class Ant : MonoBehaviour
     public void DropObject(GameObject go)
     {
         var holder = objectHolder.gameObject.transform;
+        var consomable = go.GetComponent<Consumable>();
+
+
+        if (consomable.ScorePoints > 0)
+            AppSingleton.Instance.Score += consomable.ScorePoints;
+
         if (holder.childCount > 0)
         {
             for (int childIndex = 0; childIndex < holder.childCount; childIndex++)
