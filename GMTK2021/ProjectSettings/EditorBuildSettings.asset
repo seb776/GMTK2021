@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/GMTK2021/Scenes/Menu.unity
+    guid: e0a89a3871430b54388fcf12030964e3
+  - enabled: 1
+    path: Assets/GMTK2021/Scenes/InterfaceAndGame.unity
+    guid: 792da21cc410dda469ff05891f68dcee
+  - enabled: 1
+    path: Assets/GMTK2021/Scenes/Credits.unity
+    guid: f7c5b07ba51f395459995e70b8e4dfdc
   m_configObjects: {}
