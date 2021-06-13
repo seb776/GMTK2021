@@ -14,6 +14,7 @@ public class Credits : MonoBehaviour
         public List<string> Music;
         public List<string> Programming;
         public List<string> Art2D;
+        public List<string> SpecialThanks;
 
 
         public override string ToString()
@@ -24,13 +25,18 @@ public class Credits : MonoBehaviour
             {
                 result.Append(" - " + item + "\n");
             }
-            result.Append($"\n{nameof(Art2D)}:\n");
+            result.Append($"\n2D Art:\n");
             foreach (var item in Art2D)
             {
                 result.Append(" - " + item + "\n");
             }
             result.Append($"\n{nameof(Programming)}:\n");
             foreach (var item in Programming)
+            {
+                result.Append(" - " + item + "\n");
+            }
+            result.Append($"\nSpecial Thanks :\n");
+            foreach (var item in SpecialThanks)
             {
                 result.Append(" - " + item + "\n");
             }
