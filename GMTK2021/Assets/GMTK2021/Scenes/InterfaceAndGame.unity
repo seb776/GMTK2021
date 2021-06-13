@@ -350,6 +350,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5874953814724611369, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+      propertyPath: Larve
+      value: 
+      objectReference: {fileID: 603121480}
     - target: {fileID: 6492781247900398101, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
       propertyPath: m_Name
       value: GUI
@@ -494,6 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnerAllies: {fileID: 987873229}
+  TimerSpawn: 0
+  spawnUnavailable: 0
 --- !u!4 &227309205
 Transform:
   m_ObjectHideFlags: 0
@@ -563,6 +569,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationTime: 0.25
+--- !u!1 &603121480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6492781249353120803, guid: 5c8056a003c36ab49ac5664b718c3ff1, type: 3}
+  m_PrefabInstance: {fileID: 156636262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &987873229 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5530643411459762090, guid: 13a48306135c3a742a383f2b85b6d7c6, type: 3}
