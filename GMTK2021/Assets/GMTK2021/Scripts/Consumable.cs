@@ -5,9 +5,22 @@ using UnityEngine;
 public class Consumable : MonoBehaviour
 {
     public float maxSpeed;
-    public int maxCapacity;
+
+    [SerializeField]
+    private int _maxCapacity;
+    public int maxCapacity
+    {
+        get { return Mathf.Max(1, _maxCapacity); }
+        set
+        {
+            _maxCapacity = value;
+        }
+    }
+
     public int ScorePoints;
     public int TimeBonus;
+
+    
 
     // Start is called before the first frame update
     void Start()
