@@ -5,5 +5,5 @@ A game about ants called "PICNINC Together" we did for the GMTK 2021
 
 # Capture
 
-![alt text](https://github.com/seb776/GMTK2021/Description/Cover.png?raw=true "PICNIC Together")
-![alt text](https://github.com/seb776/GMTK2021/Description/InGame.png?raw=true "PICNIC Together ingame")
+![alt text](https://github.com/seb776/GMTK2021/blob/main/Description/Cover.png?raw=true "PICNIC Together")
+![alt text](https://github.com/seb776/GMTK2021/blob/main/Description/InGame.png?raw=true "PICNIC Together ingame")
