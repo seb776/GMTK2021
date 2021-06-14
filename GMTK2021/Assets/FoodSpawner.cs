@@ -9,7 +9,7 @@ public class FoodSpawner : MonoBehaviour
     public float MaxTimeSpawn = 20f;
     [Tooltip("Minimum time for spawning new food unit, in second")]
     public float MinTimeSpawn = 10f;
-    [Tooltip("Radius of spawning zone")]
+    [Tooltip("Radius of spawning zone, imagine Y is Z ;)")]
     public Vector2 radius;
 
     private float elapsedTime;
