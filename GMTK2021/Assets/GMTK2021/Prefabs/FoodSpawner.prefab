@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: 3525973234282037879, guid: f7c7139d77b5519458c3afab01c7a11d, type: 3}
   - {fileID: 3525973234282037879, guid: 852f2230d5df08840a0d19a55b1c159b, type: 3}
   - {fileID: 3525973234282037879, guid: 49c94a0847d4d0a4a9aab93d8812be16, type: 3}
+  - {fileID: 3525973234282037879, guid: 8e0dc24cd9267084ba82cf809e5ba144, type: 3}
+  - {fileID: 3525973234282037879, guid: fa73b4d02e988c043898272359dd871d, type: 3}
   MaxTimeSpawn: 20
   MinTimeSpawn: 5
   radius: {x: 2, y: 4}
