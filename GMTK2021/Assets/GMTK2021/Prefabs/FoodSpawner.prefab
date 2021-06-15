@@ -46,6 +46,9 @@ MonoBehaviour:
   Food:
   - {fileID: 3525973234282037879, guid: f83e66c01f5e0a04b99e98aebbd4ebcb, type: 3}
   - {fileID: 3525973234282037879, guid: dee9831502d12d74fb88e461d7670e48, type: 3}
+  - {fileID: 3525973234282037879, guid: f7c7139d77b5519458c3afab01c7a11d, type: 3}
+  - {fileID: 3525973234282037879, guid: 852f2230d5df08840a0d19a55b1c159b, type: 3}
+  - {fileID: 3525973234282037879, guid: 49c94a0847d4d0a4a9aab93d8812be16, type: 3}
   MaxTimeSpawn: 20
   MinTimeSpawn: 5
   radius: {x: 2, y: 4}

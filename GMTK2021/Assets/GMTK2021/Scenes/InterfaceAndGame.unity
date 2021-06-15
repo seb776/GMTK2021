@@ -52110,6 +52110,18 @@ PrefabInstance:
       propertyPath: SpawnChance
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 6504488485652026344, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
+      propertyPath: Food.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504488485652026344, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
+      propertyPath: Food.Array.data[2]
+      value: 
+      objectReference: {fileID: 3525973234282037879, guid: f7c7139d77b5519458c3afab01c7a11d, type: 3}
+    - target: {fileID: 6504488485652026344, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
+      propertyPath: Food.Array.data[3]
+      value: 
+      objectReference: {fileID: 3525973234282037879, guid: 852f2230d5df08840a0d19a55b1c159b, type: 3}
     - target: {fileID: 6504488485652026345, guid: a99d8c30a500f5e47b8a1b32896c25ff, type: 3}
       propertyPath: m_Name
       value: FoodSpawner
