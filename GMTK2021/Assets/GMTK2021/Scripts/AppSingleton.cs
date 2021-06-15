@@ -9,10 +9,6 @@ public class AppSingleton : Singleton<AppSingleton>
     public float TimerSpawn;
     public bool spawnUnavailable;
 
-    public Texture2D cursorTexture;
-    public Texture2D cursorAttackTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
     public float TimeRemain { get; set; }
     public float Score { get; set; }
     public GameObject Scout { get; set; }
@@ -28,21 +24,7 @@ public class AppSingleton : Singleton<AppSingleton>
         Score = 0f;
         PlayerPrefs.SetFloat("Score", 0);
         TimeRemain = 0f;
-        ResetCursor();
     }
-
-    public void ResetCursor()
-    {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-
-    }
-
-    public void SetAttackCursor()
-    {
-        Cursor.SetCursor(cursorAttackTexture, hotSpot, cursorMode);
-
-    }
-
 
     // Update is called once per frame
     void Update()

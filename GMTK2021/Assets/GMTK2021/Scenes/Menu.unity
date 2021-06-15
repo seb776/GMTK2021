@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -630,6 +630,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectHolder: {fileID: 1242595245}
+  TextMesh: {fileID: 0}
+  ghost: {fileID: 0}
+  die: 0
 --- !u!114 &178970562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,6 +2181,7 @@ GameObject:
   - component: {fileID: 459095859}
   - component: {fileID: 459095862}
   - component: {fileID: 459095863}
+  - component: {fileID: 459095864}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2378,6 +2382,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &459095864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459095858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab78a22364dd494fb4ef77b1aa42760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 286e32de7114e7741a2292a33531a575, type: 3}
+  cursorAttackTexture: {fileID: 2800000, guid: 96d625f2804ff7c4ca6b5801c6439924, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
 --- !u!1 &462155094
 GameObject:
   m_ObjectHideFlags: 0
@@ -7684,6 +7704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectHolder: {fileID: 8999074854819390357}
+  TextMesh: {fileID: 0}
+  ghost: {fileID: 0}
+  die: 0
 --- !u!135 &8999074853956911373
 SphereCollider:
   m_ObjectHideFlags: 0
