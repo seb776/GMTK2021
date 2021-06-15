@@ -137,31 +137,41 @@ public class Ant : MonoBehaviour
                 SoundManager.Instance.PlayDrop();
 
                 // Spawn current number of ants
-                StartCoroutine(respawnGroups());
+                RespawnGroups();
             }
         }
     }
 
-    public IEnumerator respawnGroups()
+    public void RespawnGroups()
     {
-        for (int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
-        {
-            if (Random.Range(0, 1) % 2 == 0)
-            {
-                if (workerAntsNumber > 1)
-                {
-                    workerAntsNumber -= 1;
-                    AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
-                }
-                else if (warriorAntsNumber > 0)
-                {
-                    warriorAntsNumber -= 1;
-                    AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
-                }
-            }
-            yield return new WaitForSeconds(1f);
-        }
+        AntFarm anthill = AppSingleton.Instance.SpawnerAllies;
+        anthill.addToRespawn(workerAntsNumber, EAntType.Worker);
+        anthill.addToRespawn(warriorAntsNumber, EAntType.Warrior);
+        workerAntsNumber = 0;
+        warriorAntsNumber = 0;
+        Destroy(gameObject);
     }
+
+    //public IEnumerator respawnGroups()
+    //{
+    //    for (int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
+    //    {
+    //        if (Random.Range(0, 1) % 2 == 0)
+    //        {
+    //            if (workerAntsNumber > 1)
+    //            {
+    //                workerAntsNumber -= 1;
+    //                AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
+    //            }
+    //            else if (warriorAntsNumber > 0)
+    //            {
+    //                warriorAntsNumber -= 1;
+    //                AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
+    //            }
+    //        }
+    //        yield return new WaitForSeconds(1f);
+    //    }
+    //}
 
     public void GroupAnts(GameObject go)
     {

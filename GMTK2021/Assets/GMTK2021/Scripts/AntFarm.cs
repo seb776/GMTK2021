@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AntFarm : MonoBehaviour
@@ -6,9 +8,17 @@ public class AntFarm : MonoBehaviour
     public GameObject ScoutAntPrefab;
     public GameObject WorkerAntPrefab;
     public GameObject DefaultPathObject;
+    public List<EAntType> ToRespawn;
+
+    [Tooltip("This timer (in seconds) is only for respawning ant after come back with food")]
+    public float TimeBetweenEachSpawn = 1f;
+
+    private Coroutine respawningProcess;
 
     public void Start()
     {
+        ToRespawn = new List<EAntType>();
+        respawningProcess = null;
        /* CreateAnt(EAntType.Warrior);
         CreateAnt(EAntType.Scout);
         CreateAnt(EAntType.Worker);*/
@@ -19,6 +29,26 @@ public class AntFarm : MonoBehaviour
         Scout = 0,
         Worker = 1,
         Warrior = 2,
+    }
+
+    public void addToRespawn(int number, EAntType antType)
+    {
+        for(int i = 0; i < number; i++)
+        {
+            ToRespawn.Add(antType);
+        }
+        if(respawningProcess == null) respawningProcess = StartCoroutine(respawnGroups());
+    }
+
+    public IEnumerator respawnGroups()
+    {
+        while (ToRespawn.Count > 0)
+        {
+            CreateAnt(ToRespawn[0]);
+            ToRespawn.RemoveAt(0);
+            yield return new WaitForSeconds(TimeBetweenEachSpawn);
+        }
+        respawningProcess = null;
     }
 
     public Ant CreateAnt(EAntType type)
@@ -51,9 +81,9 @@ public class AntFarm : MonoBehaviour
             gameObject1.tag = tag;
             splineCmp.spline = DefaultPathObject.GetComponent<BezierSpline>();
             if(EAntType.Scout == type)
-        {
-            AppSingleton.Instance.Scout = gameObject1;
-        }
+            {
+                AppSingleton.Instance.Scout = gameObject1;
+            }
             return gameObject1.GetComponent<Ant>();
         }
         else
