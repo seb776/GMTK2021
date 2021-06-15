@@ -152,27 +152,6 @@ public class Ant : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //public IEnumerator respawnGroups()
-    //{
-    //    for (int workerTotal = CurrentCapacity; workerTotal > 1; workerTotal--)
-    //    {
-    //        if (Random.Range(0, 1) % 2 == 0)
-    //        {
-    //            if (workerAntsNumber > 1)
-    //            {
-    //                workerAntsNumber -= 1;
-    //                AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Worker);
-    //            }
-    //            else if (warriorAntsNumber > 0)
-    //            {
-    //                warriorAntsNumber -= 1;
-    //                AppSingleton.Instance.SpawnerAllies.CreateAnt(EAntType.Warrior);
-    //            }
-    //        }
-    //        yield return new WaitForSeconds(1f);
-    //    }
-    //}
-
     public void GroupAnts(GameObject go)
     {
         if (go != null)
