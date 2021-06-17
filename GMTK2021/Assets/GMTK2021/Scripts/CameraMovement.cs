@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
     public float IgnoreValueUpperThan = 1.1f;
     public float MaxLeftRange = 6.8f;
     public float MinRightRange = -2.93f;
+    public Collider GroundCollider;
 
     public AnimatedShowAndHide LeftArrow;
     public AnimatedShowAndHide RightArrow;
@@ -35,27 +36,36 @@ public class CameraMovement : MonoBehaviour
 
         var deltaMousePos = Mathf.Abs(centeredMousePos.x) - BorderScrollThreshold;
 
-        bool notOnMax = Camera.main.transform.position.z < MaxLeftRange;
-        bool notOnMin = Camera.main.transform.position.z > MinRightRange;
+        var leftRay = Camera.main.ScreenPointToRay(Vector3.zero);
+        var rightRay = Camera.main.ScreenPointToRay(Vector3.Scale(Vector3.one, new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, 1.0f)));
 
-        if (deltaMousePos > 0.0f && Mathf.Abs(centeredMousePos.x) <= 1.15f && (
-                (notOnMax && centeredMousePos.x >= 0) || 
-                (notOnMin && centeredMousePos.x < 0)
-            )
-        )
-        {
-            Camera.main.transform.position += Vector3.forward * Mathf.Pow(centeredMousePos.x, ExponentialSpeedPower) * Speed * Time.deltaTime;
-            if (Camera.main.transform.position.z > MaxLeftRange) Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, MaxLeftRange);
-            else if (Camera.main.transform.position.z < MinRightRange) Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, MinRightRange);
-        }
+        float curLeftZ = Camera.main.transform.position.z;
+        float curRightZ = Camera.main.transform.position.z;
+        RaycastHit groundHit = new RaycastHit();
+        if (GroundCollider.Raycast(leftRay, out groundHit, 100.0f))
+            curLeftZ = groundHit.point.z;
+        if (GroundCollider.Raycast(rightRay, out groundHit, 100.0f))
+            curRightZ = groundHit.point.z;
 
-        if (!notOnMax)
+        bool leftOut = curLeftZ < MaxLeftRange;
+        bool rightOut = curRightZ > MinRightRange;
+
+        float direction = Mathf.Sign(centeredMousePos.x);
+        var offset = Vector3.forward * Mathf.Pow(Mathf.Abs(centeredMousePos.x), ExponentialSpeedPower) * Speed * Time.deltaTime;
+        if (curLeftZ > MaxLeftRange && curRightZ < MinRightRange)
+            Camera.main.transform.position += direction * offset;
+        if (curLeftZ < MaxLeftRange && direction > 0.0f)
+            Camera.main.transform.position += direction * offset;
+        if (curRightZ > MinRightRange && direction < 0.0f)
+            Camera.main.transform.position += direction * offset;
+
+        if (rightOut)
         {
             LeftArrow.Hide();
         }
         else LeftArrow.Show();
 
-        if (!notOnMin)
+        if (leftOut)
         {
             RightArrow.Hide();
         }
